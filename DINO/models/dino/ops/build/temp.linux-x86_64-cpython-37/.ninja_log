@@ -1,0 +1,4 @@
+# ninja log v5
+0	4542	1696685715493362985	/home/irisqiu/Desktop/CVPDL/DINO/models/dino/ops/build/temp.linux-x86_64-cpython-37/home/irisqiu/Desktop/CVPDL/DINO/models/dino/ops/src/cpu/ms_deform_attn_cpu.o	7ce4a3a6394e12fc
+1	11119	1696685722057342601	/home/irisqiu/Desktop/CVPDL/DINO/models/dino/ops/build/temp.linux-x86_64-cpython-37/home/irisqiu/Desktop/CVPDL/DINO/models/dino/ops/src/cuda/ms_deform_attn_cuda.o	b4659d5ccab21d0b
+1	17063	1696685728005324127	/home/irisqiu/Desktop/CVPDL/DINO/models/dino/ops/build/temp.linux-x86_64-cpython-37/home/irisqiu/Desktop/CVPDL/DINO/models/dino/ops/src/vision.o	2f5a9d901d7df5e0
