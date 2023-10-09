@@ -54,7 +54,6 @@ cd CVPDL-HW1
 bash ./build_Dino.sh
 ```
 ## Evaluate
-**Note** : An output.json has been put under hw1_dataset
 ```sh
 python hw1_dataset/evaluate.py output.json $PATH_GROUND_TRUTH
 ```
@@ -67,7 +66,7 @@ cd DINO
 # Default output path : logs/{R50-12/R50-24/R50-36}/test/output.json
 bash scripts/DINO_test.sh
 
-# Get the bounded images for hw1-dataset/test but withou generatin output.json
+# Get the bounded images for hw1-dataset/test without generating output.json
 # Default output path : figs/imgs/IMG_xxxx.jpeg
 bash scripts/DINO_visual.sh
 
