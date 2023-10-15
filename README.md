@@ -20,7 +20,7 @@ python hw1_dataset/evaluate.py output.json $PATH_GROUND_TRUTH
 ```
 
 ## Run
-* Before running models, download checkpoints from [google drive](https://drive.google.com/drive/folders/1PpPq0CuQjQeFZGVJ8KKrnnZVqShFdjK7?usp=sharing) and modify `pretrain_model_path` in all script in scripts/
+* Before running models, download checkpoints from [google drive](https://drive.google.com/drive/folders/1PpPq0CuQjQeFZGVJ8KKrnnZVqShFdjK7?usp=sharing) and change the `pretrain_model_path` at the beginning of all scripts under scripts/
 ```sh
 cd DINO
 
@@ -81,7 +81,7 @@ CVPDL-HW1/
       |   ├──DINO_train.sh
       |   └──DINO_eval.sh
       |
-      ├── logs : outputs of models
+      ├── logs : (Outputs of models)
       |   |   
       |   ├──R50-12/
       |   |   ├──test/output.json
