@@ -1,9 +1,9 @@
 output_dir_path="logs/evaluate"
 coco_path="../hw1_dataset"
-checkpoint_path="logs/R50-36/checkpoint0008.pth"
-config_path="config/DINO/DINO_4scale.py"
+checkpoint_path="logs/swin_lr1e5/checkpoint0014.pth"
+config_path="config/DINO/DINO_4scale_swin.py"
 
-python main.py \
+CUDA_VISIBLE_DEVICES=0 python main.py \
   	--output_dir $output_dir_path \
 	-c $config_path \
 	--coco_path $coco_path  \

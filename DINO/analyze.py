@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import MultipleLocator
 import json
-EPOCH_NUM = 24
+EPOCH_NUM = 15
 
 
 def read_mAP_from_log(fname):
@@ -21,7 +21,8 @@ def read_mAP_from_log(fname):
 
 def plot_figure(mAPs):
     plt.title('mAP of models (on validation set)')
-    plt.yticks(np.arange(0.35, 0.55, 0.05))
+    plt.ylim(0.5, 0.6)
+    # plt.yticks(np.arange(0.45, 0.6, 0.01))
     plt.xticks(np.arange(0, EPOCH_NUM, 2))
     
     colors = ['cornflowerblue', 'palevioletred', 'lightseagreen']
@@ -33,15 +34,15 @@ def plot_figure(mAPs):
         plt.text(x=(max_idx-1), y=0.47+0.01*i, c=colors[i], s=f'ep={max_idx}')
 
 
-
     plt.legend(loc='lower right')
-    plt.savefig('figs/models.png')
+    plt.savefig('figs/model_swin.png')
     return
 
 
 if __name__ == '__main__':
 
-    models = ["R50-12", "R50-24", "R50-36"]
+    # models = ["R50-12", "R50-24", "R50-36"]
+    models = ["swin_lr1e5"]
     models_mAPs = {}
     for m in models:
         log_path = f"logs/{m}/log.txt"

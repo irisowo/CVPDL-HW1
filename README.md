@@ -2,16 +2,16 @@
 ## Methods
 ### Model : DINO <img src="DINO/figs/dinosaur.png" width="30">
 
-* The repository is cloned from the [official implementation](https://github.com/IDEA-Research/DINO) of the [DINO](https://arxiv.org/abs/2203.03605) and is modified to meet the requirements of CVPDL-HW1
+* The repository is cloned from the [official implementation](https://github.com/IDEA-Research/DINO) of the [DINO](https://arxiv.org/abs/2203.03605) and is modified to meet the requirements of CVPDL-HW1 (Marked by `# Modification for CVPDL-hw1`)
 ![method](DINO/figs/framework.png "model arch")
 
 ## Environment
 ```sh
-git clone https://github.com/irisowo/CVPDL-HW1.git
+(optional) git clone https://github.com/irisowo/CVPDL-HW1.git
 
 cd CVPDL-HW1
 
-# This will setup a conda environment
+# This will setup a conda environment and download checkpoint_best_regular.pth
 bash ./build_Dino.sh
 ```
 ## Evaluate
@@ -20,12 +20,12 @@ python hw1_dataset/evaluate.py output.json $PATH_GROUND_TRUTH
 ```
 
 ## Run
-* Before running models, download checkpoints from [google drive](https://drive.google.com/drive/folders/1PpPq0CuQjQeFZGVJ8KKrnnZVqShFdjK7?usp=sharing) and change the `pretrain_model_path` at the beginning of all scripts under scripts/
+* (optional) Before running models, download checkpoints from [google drive](https://drive.google.com/drive/folders/1PpPq0CuQjQeFZGVJ8KKrnnZVqShFdjK7?usp=sharing) or [official google drive](https://drive.google.com/drive/folders/1qD5m1NmK0kjE5hh-G17XUX751WsEG-h_)
+* You can change the `pretrain_model_path` at the beginning of all scripts under scripts/
 ```sh
 cd DINO
-
 # Get the output.json for hw1-dataset/test
-# Default output path : logs/{R50-12/R50-24/R50-36}/test/output.json
+# Default output path : logs/submission_output/output.json
 bash scripts/DINO_test.sh
 
 # Get the bounded images for hw1-dataset/test without generating output.json
@@ -33,7 +33,8 @@ bash scripts/DINO_test.sh
 bash scripts/DINO_visual.sh
 
 # Train the model
-bash scripts/DINO_train.sh
+# Default output path of model : logs/swin_lr1e5/xxxx.pth
+bash scripts/DINO_train_swin.sh
 
 # Evaluate certain checkpoints on validation set
 bash scripts/DINO_eval.sh
@@ -42,25 +43,31 @@ bash scripts/DINO_eval.sh
 * **Note** : For each bash file, you can manually configure the arguments at the beginning, for example :  
   * DINO_test.sh
     ```sh
-    # Manually configure the variables here
-    model_name="R50-24"
+    # modify model_name 
+    model_name="swin_lr1e5"
 
-    output_dir_path="logs/submission_output"
     coco_path="../hw1_dataset"
-    config_path="config/DINO/DINO_4scale.py"
-    pretrain_model_path="logs/${model_name}/checkpoint_best_regular.pth"
+    output_dir_path="logs/submission_output"
 
-    # command
-    python main.py \
-      --output_dir $output_dir_path \
+    config_path="config/DINO/DINO_4scale_swin.py"
+
+    pretrain_model_path="logs/${model_name}/checkpoint0014.pth"
+
+
+    CUDA_VISIBLE_DEVICES=0 python main.py \
+        --output_dir $output_dir_path \
       -c $config_path \
       --coco_path $coco_path  \
       --pretrain_model_path $pretrain_model_path \
-      --test
-      ...
+      --test \
+      --options dn_scalar=100 embed_init_tgt=TRUE \
+      dn_label_coef=1.0 dn_bbox_coef=1.0 use_ema=False \
+      dn_box_noise_scale=1.0
     ```
 
 ## Result
+* DINO with Swin-L backbone performs better than the onw with ResNet.
+![mAP](DINO/figs/model_swin.png)
 ![mAP](DINO/figs/models.png)
 
 ## Directory Structure

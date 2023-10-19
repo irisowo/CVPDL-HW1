@@ -1,13 +1,15 @@
 # modify model_name 
-model_name="R50-24"
+model_name="swin_lr1e5"
 
-output_dir_path="logs/submission_output"
 coco_path="../hw1_dataset"
-config_path="config/DINO/DINO_4scale.py"
-pretrain_model_path="logs/${model_name}/checkpoint_best_regular.pth"
+output_dir_path="logs/submission_output"
+
+config_path="config/DINO/DINO_4scale_swin.py"
+
+pretrain_model_path="logs/${model_name}/checkpoint0014.pth"
 
 
-python main.py \
+CUDA_VISIBLE_DEVICES=0 python main.py \
   	--output_dir $output_dir_path \
 	-c $config_path \
 	--coco_path $coco_path  \

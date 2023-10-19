@@ -5,7 +5,7 @@ config_path="config/DINO/DINO_4scale.py"
 pretrain_model_path="logs/R50-24/checkpoint_best_regular.pth"
 
 # commands
-python main.py \
+CUDA_VISIBLE_DEVICES=0 python main.py \
 	--output_dir $output_dir_path \
 	-c $config_path \
 	--coco_path $coco_path \
