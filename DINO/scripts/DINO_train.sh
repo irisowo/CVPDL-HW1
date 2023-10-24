@@ -1,10 +1,12 @@
-# configuration
-output_dir_path="logs/R50-24"
+# Define model_name and pathes
+model_name="R50-24"
+output_dir_path="logs/${model_name}"
 coco_path="../hw1_dataset"
 config_path="config/DINO/DINO_4scale.py"
-pretrain_model_path="logs/R50-24/checkpoint_best_regular.pth"
+pretrain_model_path="logs/${model_name}/checkpoint_best_regular.pth"
 
-# commands
+
+# Start training
 CUDA_VISIBLE_DEVICES=0 python main.py \
 	--output_dir $output_dir_path \
 	-c $config_path \

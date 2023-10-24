@@ -1,5 +1,5 @@
 {
-  "config_file": "config/DINO/DINO_4scale.py",
+  "config_file": "config/DINO/DINO_4scale_swin.py",
   "options": {
     "dn_scalar": 100,
     "embed_init_tgt": true,
@@ -16,9 +16,9 @@
   "output_dir": "logs/submission_visual",
   "note": "",
   "device": "cuda",
-  "seed": 42,
+  "seed": 0,
   "resume": "",
-  "pretrain_model_path": "logs/R50-24/checkpoint_best_regular.pth",
+  "pretrain_model_path": "logs/swin_lr1e5/checkpoint0014.pth",
   "finetune_ignore": null,
   "start_epoch": 0,
   "eval": false,

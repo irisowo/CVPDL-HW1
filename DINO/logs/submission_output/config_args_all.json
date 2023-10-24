@@ -61,7 +61,7 @@
   ],
   "data_aug_scale_overlap": null,
   "num_classes": 91,
-  "lr": 3e-05,
+  "lr": 1e-05,
   "param_dict_type": "default",
   "lr_backbone": 1e-05,
   "lr_backbone_names": [

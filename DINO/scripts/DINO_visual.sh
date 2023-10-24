@@ -1,9 +1,13 @@
+# Define pathes
+model_name="swin_lr1e5"
 output_dir_path="logs/submission_visual"
 coco_path="../hw1_dataset"
-config_path="config/DINO/DINO_4scale.py"
-pretrain_model_path="logs/R50-24/checkpoint_best_regular.pth"
+config_path="config/DINO/DINO_4scale_swin.py"
+pretrain_model_path="logs/${model_name}/checkpoint0014.pth"
 visualize_path="figs/imgs"
 
+
+# Execute main.py with "--visualize_mode"
 python main.py \
   	--output_dir $output_dir_path \
 	-c $config_path \

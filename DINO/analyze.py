@@ -12,9 +12,9 @@ def read_mAP_from_log(fname):
         epochs = text.split("\n")
         
         for i in range(len(epochs)-1):
-                info = json.loads(epochs[i])
-                mAP_i = info['test_coco_eval_bbox'][0]
-                mAP_epochs.append(mAP_i)
+            info = json.loads(epochs[i])
+            mAP_i = info['test_coco_eval_bbox'][0]
+            mAP_epochs.append(mAP_i)
 
     return mAP_epochs
 
@@ -44,8 +44,8 @@ if __name__ == '__main__':
     # models = ["R50-12", "R50-24", "R50-36"]
     models = ["swin_lr1e5"]
     models_mAPs = {}
-    for m in models:
-        log_path = f"logs/{m}/log.txt"
-        models_mAPs[m] = read_mAP_from_log(log_path)
+    for model_name in models:
+        log_path = f"logs/{model_name}/log.txt"
+        models_mAPs[model_name] = read_mAP_from_log(log_path)
     
     plot_figure(models_mAPs)
