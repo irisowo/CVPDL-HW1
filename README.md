@@ -18,9 +18,9 @@ bash ./build_Dino.sh
 * After running ./build_Dino.sh, your are now under DINO/
 ### Way1
 * Simply evaluate the provided output.json
-```sh
-python ../hw1_dataset/evaluate.py ../output.json $PATH_GROUND_TRUTH
-```
+  ```sh
+  python ../hw1_dataset/evaluate.py ../output.json $PATH_GROUND_TRUTH
+  ```
 ### way 2
 * Get ouput.json from my pretrained model
   ```sh
@@ -35,34 +35,31 @@ python ../hw1_dataset/evaluate.py ../output.json $PATH_GROUND_TRUTH
   ```
 
 ## Run
-* (Optional) Before running models, download checkpoints from [my google drive](https://drive.google.com/drive/folders/1PpPq0CuQjQeFZGVJ8KKrnnZVqShFdjK7?usp=sharing) or [official google drive](https://drive.google.com/drive/folders/1qD5m1NmK0kjE5hh-G17XUX751WsEG-h_)
-* Otherwise :
-  * My pretrained weights will be automatically downloaded when runnung  `DINO_test_swin.sh`
-  * The officially pretrained weights will be automatically downloaded when runnung  `DINO_train_swin.sh`
+* (Optional) Before running models, download checkpoints from [my google drive](https://drive.google.com/drive/folders/1PpPq0CuQjQeFZGVJ8KKrnnZVqShFdjK7?usp=sharing) or [official google drive](https://drive.google.com/drive/folders/1qD5m1NmK0kjE5hh-G17XUX751WsEG-h_). Otherwise, my pretrained weights will be automatically downloaded when runnung  `DINO_test_swin.sh`, and the officially pretrained weights will be automatically downloaded when runnung  `DINO_train_swin.sh`
+### scripts
+  ```sh
+  cd DINO
+  # Get the output.json of hw1-dataset/test
+  # Default output path : logs/submission_output/output.json
+  bash scripts/DINO_test.sh
 
-```sh
-cd DINO
-# Get the output.json of hw1-dataset/test
-# Default output path : logs/submission_output/output.json
-bash scripts/DINO_test.sh
+  # Get the bounded images of hw1-dataset/test without generating output.json
+  # Default output path : figs/imgs/IMG_xxxx.jpeg
+  bash scripts/DINO_visual.sh
 
-# Get the bounded images of hw1-dataset/test without generating output.json
-# Default output path : figs/imgs/IMG_xxxx.jpeg
-bash scripts/DINO_visual.sh
+  # Train the model
+  # Default output path of model : logs/swin_lr1e5/xxxx.pth
+  nohup bash scripts/DINO_train_swin.sh > ./logs/swin_lr1e5.txt 2> ./logs/swin_
+  lr1e5.err &
+  # or
+  bash scripts/DINO_train_swin.sh
 
-# Train the model
-# Default output path of model : logs/swin_lr1e5/xxxx.pth
-nohup bash scripts/DINO_train_swin.sh > ./logs/swin_lr1e5.txt 2> ./logs/swin_
-lr1e5.err &
-# or
-bash scripts/DINO_train_swin.sh
+  # Evaluate certain checkpoints on validation set
+  bash scripts/DINO_eval.sh
+  ```
 
-# Evaluate certain checkpoints on validation set
-bash scripts/DINO_eval.sh
-```
-
-* **Note** : For all scripts under DINO/scripts, you can manually configure the arguments at the beginning, for example :  
-  * DINO_test.sh
+### Note
+* For all scripts under DINO/scripts, you can manually configure the arguments at the beginning. Let's take `DINO_test.sh` for example :  
     ```sh
     # Define model_name and pathes
     model_name="swin_lr1e5"
@@ -109,13 +106,14 @@ CVPDL-HW1/
       |
       ├── logs : (Outputs of models)
       |   |   
-      |   ├──R50-xx/
-      |   |   ├──test/output.json
-      |   |   └──checkpoint_best_regular.pth
+      |   ├──R50-xx/ (deprecated)
+      |   |
+      |   ├──submission_output/
+      |   |   └──output.json
       |   |
       |   └──swin_lr1e5/
-      |       ├──test/output.json
-      |       └──checkpoint_best_regular.pth
+      |       ├──log.txt
+      |       └──checkpoint_xxxx.pth
       |
       ├── config/DINO
       |   ├──DINO_4scale_swin.py
